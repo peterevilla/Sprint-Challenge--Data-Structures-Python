@@ -1,9 +1,24 @@
 class RingBuffer:
     def __init__(self, capacity):
-        pass
+        self.elements = []
+        self.capacity = capacity
 
     def append(self, item):
-        pass
+        if len(self.elements) < self.capacity:
+            self.elements.append(item)
+        else:
+            self.elements[0] = item
 
     def get(self):
-        pass
+        return self.elements
+
+
+
+buffer = RingBuffer(5)
+buffer.append('a')
+buffer.append('b')
+buffer.append('c')
+buffer.append('d')
+buffer.append('e')
+buffer.append('e')
+print(buffer.get())
