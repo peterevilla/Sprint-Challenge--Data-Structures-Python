@@ -2,6 +2,32 @@ import time
 
 start_time = time.time()
 
+class BSTNode:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+    def insert(self, value):
+        if value < self.value:
+            if not self.left:
+                self.left = BSTNode(value)
+            else:
+                self.left.insert(value)
+        elif value >= self.value:
+            if not self.right:
+                self.right = BSTNode(value)
+            else:
+                self.right.insert(value)
+
+    def contains(self, target):
+        if target == self.value:
+            return True
+        elif target < self.value:
+            return self.left.contains(target) if self.left else False
+        else:
+            return self.right.contains(target) if self.right else False
+
 f = open('names_1.txt', 'r')
 names_1 = f.read().split("\n")  # List containing 10000 names
 f.close()
@@ -18,7 +44,17 @@ duplicates = []  # Return the list of duplicates in this data structure
 #         if name_1 == name_2:
 #             duplicates.append(name_1)
 
-duplicates = set.intersection(set(names_1),set(names_2))
+# duplicates = set.intersection(set(names_1),set(names_2))
+
+def bst():
+    bst_names = BSTNode('Names')
+    for name in names_1:
+        bst_names.insert(name)
+    for name in names_2:
+        if bst_names.contains(name):
+            duplicates.append(name)
+
+bst()
 
 end_time = time.time()
 print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
