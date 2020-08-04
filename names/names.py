@@ -44,17 +44,17 @@ duplicates = []  # Return the list of duplicates in this data structure
 #         if name_1 == name_2:
 #             duplicates.append(name_1)
 
-# duplicates = set.intersection(set(names_1),set(names_2))
+duplicates = set.intersection(set(names_1),set(names_2))
 
-def bst():
-    bst_names = BSTNode('Names')
-    for name in names_1:
-        bst_names.insert(name)
-    for name in names_2:
-        if bst_names.contains(name):
-            duplicates.append(name)
+# def bst():
+#     bst_names = BSTNode('Names')
+#     for name in names_1:
+#         bst_names.insert(name)
+#     for name in names_2:
+#         if bst_names.contains(name):
+#             duplicates.append(name)
 
-bst()
+# bst()
 
 end_time = time.time()
 print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
